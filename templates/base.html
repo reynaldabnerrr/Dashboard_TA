@@ -1,10 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Sistem Informasi Sekolah{% endblock %}</title>
+    <title>{% block title %}Academic Information System{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
 </head>
 <body>
@@ -12,16 +12,15 @@
     <div class="bg-orb orb-b"></div>
     <nav class="navbar">
         <div class="container nav-wrapper">
-            <a href="{% url 'home' %}" class="logo">SI Akademik</a>
+            <a href="{% url 'home' %}" class="logo">Academic System</a>
             <div class="nav-right">
                 {% if user.is_authenticated %}
                     <span class="nav-user">{{ auth_full_name|default:user.username }}</span>
                     {% if auth_role == ROLE_TEACHER %}
-                        <a href="{% url 'teacher-dashboard' %}">Dashboard Guru</a>
+                        <a href="{% url 'teacher-dashboard' %}">Teacher Dashboard</a>
                         <a href="{% url 'teacher-upload' %}">Upload Video</a>
                     {% elif auth_role == ROLE_PRINCIPAL %}
-                        <a href="{% url 'principal-dashboard' %}">Dashboard</a>
-                        <a href="{% url 'model-validation' %}">Validation</a>
+                        <a href="{% url 'principal-dashboard' %}">Principal Dashboard</a>
                     {% endif %}
                     <form method="post" action="{% url 'logout' %}" class="logout-form">
                         {% csrf_token %}

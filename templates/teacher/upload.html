@@ -1,56 +1,56 @@
 {% extends 'base.html' %}
 
-{% block title %}Upload Video Guru{% endblock %}
+{% block title %}Teacher Video Upload{% endblock %}
 
 {% block content %}
 <section class="page-head">
-    <h1>Upload Video Pembelajaran</h1>
-    <p>Isi metadata, lalu sistem akan preprocess video dan menjalankan analitik model.</p>
+    <h1>Upload Learning Video</h1>
+    <p>Fill in the metadata, then the system will preprocess the video and run model analytics.</p>
 </section>
 
 <section class="card">
-    <p class="muted">Pastikan video jelas, pencahayaan cukup, dan durasi sesuai jam pelajaran.</p>
+    <p class="muted">Make sure the video is clear, lighting is adequate, and duration matches the class time.</p>
 
     <form id="uploadForm" method="post" enctype="multipart/form-data" class="form-grid">
         {% csrf_token %}
         {{ form.non_field_errors }}
 
-        <label for="id_subject">Mata Pelajaran</label>
+        <label for="id_subject">Subject</label>
         {{ form.subject }}
 
-        <label for="id_class_name">Kelas</label>
+        <label for="id_class_name">Class</label>
         {{ form.class_name }}
 
-        <label for="id_submission_date">Tanggal Pembelajaran</label>
+        <label for="id_submission_date">Learning Date</label>
         {{ form.submission_date }}
 
         <div class="day-display">
-            <label>Hari</label>
+            <label>Day</label>
             <div class="day-value" id="dayDisplay">-</div>
         </div>
 
-        <label for="id_start_time">Jam Mulai</label>
+        <label for="id_start_time">Start Time</label>
         {{ form.start_time }}
 
-        <label for="id_end_time">Jam Selesai</label>
+        <label for="id_end_time">End Time</label>
         {{ form.end_time }}
 
         <div class="schedule-display">
-            <label>Jadwal Pembelajaran</label>
+            <label>Learning Schedule</label>
             <div class="schedule-time" id="scheduleDisplay">
                 <span class="time-start" id="timeStart">--:--</span>
-                <span class="time-separator">sampai</span>
+                <span class="time-separator">to</span>
                 <span class="time-end" id="timeEnd">--:--</span>
             </div>
         </div>
 
-        <label for="id_notes">Catatan</label>
+        <label for="id_notes">Notes</label>
         {{ form.notes }}
 
         <label for="id_original_video">Video</label>
         {{ form.original_video }}
 
-        <button class="btn" type="submit" id="submitBtn">Upload dan Proses</button>
+        <button class="btn" type="submit" id="submitBtn">Upload and Process</button>
     </form>
 </section>
 
@@ -59,8 +59,8 @@
     <div class="modal-overlay"></div>
     <div class="modal-content">
         <div class="modal-header">
-            <h2>⚙️ Memproses Video</h2>
-            <p>Sistem sedang memproses video Anda. Mohon tunggu...</p>
+            <h2>⚙️ Processing Video</h2>
+            <p>The system is processing your video. Please wait...</p>
         </div>
 
         <div class="modal-body">
@@ -76,8 +76,8 @@
                             </svg>
                         </div>
                         <div class="step-info">
-                            <h3 class="step-title">📤 Upload File</h3>
-                            <p class="step-subtitle" id="stepUploadSubtitle">File berhasil diunggah</p>
+                            <h3 class="step-title">📤 File Upload</h3>
+                            <p class="step-subtitle" id="stepUploadSubtitle">File successfully uploaded</p>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="step-info">
                             <h3 class="step-title">⚙️ Preprocessing</h3>
-                            <p class="step-subtitle" id="stepPreprocessSubtitle">Mengekstrak wajah...</p>
+                            <p class="step-subtitle" id="stepPreprocessSubtitle">Extracting faces...</p>
                         </div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                         </div>
                         <div class="step-info">
                             <h3 class="step-title">🤖 Model Inference</h3>
-                            <p class="step-subtitle" id="stepInferenceSubtitle">Menunggu...</p>
+                            <p class="step-subtitle" id="stepInferenceSubtitle">Waiting...</p>
                         </div>
                     </div>
                 </div>
@@ -123,8 +123,8 @@
                             </svg>
                         </div>
                         <div class="step-info">
-                            <h3 class="step-title">✅ Selesai</h3>
-                            <p class="step-subtitle" id="stepCompleteSubtitle">Menunggu...</p>
+                            <h3 class="step-title">✅ Complete</h3>
+                            <p class="step-subtitle" id="stepCompleteSubtitle">Waiting...</p>
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
 
             <!-- Status Message -->
             <div class="status-message" id="statusMessage">
-                📤 File sedang diunggah ke server...
+                📤 Uploading file to server...
             </div>
         </div>
     </div>
@@ -461,7 +461,7 @@
     let isProcessing = true;
 
     // Indonesian day names
-    const dayNames = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     // Function to update day display
     function updateDayDisplay() {

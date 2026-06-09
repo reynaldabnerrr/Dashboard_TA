@@ -40,7 +40,7 @@ def role_redirect(request):
     except Exception:
         profile = None
     if not profile:
-        messages.error(request, 'Akun Anda belum memiliki role. Hubungi admin.')
+        messages.error(request, 'Your account does not have a role yet. Contact admin.')
         logout(request)
         return redirect('login')
 
@@ -147,7 +147,7 @@ def delete_submission(request, submission_id):
     if request.method == 'POST':
         # Database record deletion will trigger post_delete signal
         submission.delete()
-        messages.success(request, 'Video dan seluruh data medianya berhasil dihapus.')
+        messages.success(request, 'Video and all media data have been successfully deleted.')
         return redirect('teacher-dashboard')
     
     # If GET request, show confirmation page
@@ -216,7 +216,7 @@ def principal_dashboard(request):
             status=VideoSubmission.STATUS_COMPLETED,
             created_at__date=date
         ).count()
-        day_name = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'][date.weekday()]
+        day_name = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][date.weekday()]
         weekly_data.append({
             'date': date,
             'day_name': day_name,

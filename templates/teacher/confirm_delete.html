@@ -1,38 +1,38 @@
 {% extends "base.html" %}
 
-{% block title %}Hapus Submission{% endblock %}
+{% block title %}Delete Submission{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="page-header">
-        <h1>Hapus Video Submission</h1>
-        <p>Konfirmasi penghapusan video dan semua data terkait</p>
+        <h1>Delete Video Submission</h1>
+        <p>Confirm deletion of video and all related data</p>
     </div>
 
     <div class="delete-confirmation" style="max-width: 600px; margin: 40px auto;">
         <div class="card" style="border: 2px solid #dc3545; padding: 30px;">
             <div style="text-align: center; margin-bottom: 30px;">
                 <div style="font-size: 48px; color: #dc3545; margin-bottom: 15px;">⚠️</div>
-                <h2 style="color: #333; margin: 10px 0;">Yakin ingin menghapus?</h2>
+                <h2 style="color: #333; margin: 10px 0;">Are you sure you want to delete?</h2>
             </div>
 
             <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
-                <h3 style="margin-top: 0; color: #333;">Detail Submission yang akan dihapus:</h3>
+                <h3 style="margin-top: 0; color: #333;">Submission details that will be deleted:</h3>
                 <div style="line-height: 1.8;">
-                    <p><strong>Mata Pelajaran:</strong> {{ submission.subject }}</p>
-                    <p><strong>Kelas:</strong> {{ submission.class_name }}</p>
-                    <p><strong>Hari:</strong> {{ submission.day }}</p>
-                    <p><strong>Waktu:</strong> {{ submission.start_time|time:"H:i" }} - {{ submission.end_time|time:"H:i" }}</p>
+                    <p><strong>Subject:</strong> {{ submission.subject }}</p>
+                    <p><strong>Class:</strong> {{ submission.class_name }}</p>
+                    <p><strong>Day:</strong> {{ submission.day }}</p>
+                    <p><strong>Time:</strong> {{ submission.start_time|time:"H:i" }} - {{ submission.end_time|time:"H:i" }}</p>
                     <p><strong>Status:</strong> {{ submission.get_status_display }}</p>
                 </div>
             </div>
 
             <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin-bottom: 30px; border-radius: 4px;">
                 <p style="margin: 0; color: #856404;">
-                    ✕ File video asli akan dihapus<br>
-                    ✕ File preprocessing akan dihapus<br>
-                    ✕ Data model inference akan dihapus<br>
-                    ✕ Tidak dapat dibatalkan setelah dikonfirmasi
+                    ✕ Original video file will be deleted<br>
+                    ✕ Preprocessing files will be deleted<br>
+                    ✕ Model inference data will be deleted<br>
+                    ✕ Cannot be undone after confirmation
                 </p>
             </div>
 
@@ -40,11 +40,11 @@
                 <form method="post" style="flex: 1; max-width: 250px;">
                     {% csrf_token %}
                     <button type="submit" class="btn-delete-confirm">
-                        ✓ Ya, Hapus Video
+                        ✓ Yes, Delete Video
                     </button>
                 </form>
                 <a href="{% url 'teacher-submission-detail' submission.id %}" class="btn-delete-cancel">
-                    ✕ Batal
+                    ✕ Cancel
                 </a>
             </div>
         </div>

@@ -13,7 +13,7 @@ class Command(BaseCommand):
         teacher.save()
         UserProfile.objects.update_or_create(
             user=teacher,
-            defaults={'role': UserProfile.ROLE_TEACHER, 'full_name': 'Guru Demo'},
+            defaults={'role': UserProfile.ROLE_TEACHER, 'full_name': 'Demo Teacher'},
         )
 
         principal, _ = User.objects.get_or_create(
@@ -23,7 +23,7 @@ class Command(BaseCommand):
         principal.save()
         UserProfile.objects.update_or_create(
             user=principal,
-            defaults={'role': UserProfile.ROLE_PRINCIPAL, 'full_name': 'Kepala Sekolah Demo'},
+            defaults={'role': UserProfile.ROLE_PRINCIPAL, 'full_name': 'Demo Principal'},
         )
 
         self.stdout.write(self.style.SUCCESS('Default users created/updated.'))

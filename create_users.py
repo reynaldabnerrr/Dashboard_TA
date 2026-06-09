@@ -21,7 +21,7 @@ else:
 teacher_profile, created = UserProfile.objects.get_or_create(user=teacher_user)
 if created:
     teacher_profile.role = 'teacher'
-    teacher_profile.full_name = 'Guru'
+    teacher_profile.full_name = 'Teacher'
     teacher_profile.save()
     print("✅ Profile teacher created")
 else:
@@ -40,12 +40,12 @@ else:
 principal_profile, created = UserProfile.objects.get_or_create(user=principal_user)
 if created:
     principal_profile.role = 'principal'
-    principal_profile.full_name = 'Kepala Sekolah'
+    principal_profile.full_name = 'Principal'
     principal_profile.save()
     print("✅ Profile principal created")
 else:
     print("⚠️ Principal profile already exists")
 
-print("\n✅ Setup lengkap!")
+print("\n✅ Setup complete!")
 print(f"Teacher: guru / guru123")
 print(f"Principal: kepsek / kepsek123")

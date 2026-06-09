@@ -6,24 +6,24 @@ from .models import VideoSubmission
 
 
 def validate_video_file(file):
-    """Validasi file video untuk menerima format .mp4, .avi, .mov, .mkv, .mts, .m2ts, .webm"""
+    """Validate video file to accept formats: .mp4, .avi, .mov, .mkv, .mts, .m2ts, .webm"""
     allowed_extensions = ['mp4', 'avi', 'mov', 'mkv', 'mts', 'm2ts', 'webm', 'flv', 'wmv', 'ts']
     file_extension = file.name.split('.')[-1].lower()
     
     if file_extension not in allowed_extensions:
         raise ValidationError(
-            f'Format file tidak didukung. Gunakan salah satu: {", ".join(allowed_extensions)}'
+            f'File format not supported. Use one of: {", ".join(allowed_extensions)}'
         )
 
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
         label='Username',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Masukkan username'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter username'}),
     )
     password = forms.CharField(
         label='Password',
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Masukkan password'}),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter password'}),
     )
 
 
@@ -41,7 +41,7 @@ class VideoSubmissionForm(forms.ModelForm):
         ]
         widgets = {
             'subject': forms.Select(attrs={'class': 'form-control'}),
-            'class_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contoh: X IPA 1'}),
+            'class_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Example: Class X IPA 1'}),
             'submission_date': forms.DateInput(attrs={
                 'class': 'form-control',
                 'type': 'date',
@@ -57,7 +57,7 @@ class VideoSubmissionForm(forms.ModelForm):
                 'type': 'time',
                 'step': '300',  # 5 minute intervals
             }),
-            'notes': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Catatan tambahan'}),
+            'notes': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Additional notes'}),
             'original_video': forms.ClearableFileInput(attrs={
                 'class': 'form-control', 
                 'accept': '.mp4, .avi, .mov, .mkv, .mts, .m2ts, .webm, .flv, .wmv, .ts'
@@ -65,7 +65,7 @@ class VideoSubmissionForm(forms.ModelForm):
         }
 
     def clean_original_video(self):
-        """Validasi file video"""
+        """Validate video file"""
         file = self.cleaned_data.get('original_video')
         if file:
             validate_video_file(file)
@@ -76,5 +76,5 @@ class VideoSubmissionForm(forms.ModelForm):
         start_time = cleaned_data.get('start_time')
         end_time = cleaned_data.get('end_time')
         if start_time and end_time and end_time <= start_time:
-            raise forms.ValidationError('Jam selesai harus lebih besar dari jam mulai.')
+            raise forms.ValidationError('End time must be greater than start time.')
         return cleaned_data

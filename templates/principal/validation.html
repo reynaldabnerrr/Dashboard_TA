@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 {% load static custom_filters %}
 
-{% block title %}Validasi Model - Dashboard TA{% endblock %}
+{% block title %}Model Validation - Dashboard TA{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>🔥 Strategi Validasi Website (Bab 4)</h2>
-        <a href="{% url 'principal-dashboard' %}" class="btn btn-outline-secondary btn-sm">Kembali ke Dashboard</a>
+        <h2>🔥 Website Validation Strategy (Chapter 4)</h2>
+        <a href="{% url 'principal-dashboard' %}" class="btn btn-outline-secondary btn-sm">Back to Dashboard</a>
     </div>
 
-    <!-- Ringkasan Akurasi Keseluruhan -->
+    <!-- Overall Accuracy Summary -->
     <div class="row mb-4">
         <div class="col-md-3">
             <div class="card bg-primary text-white shadow">
                 <div class="card-body text-center">
-                    <h6 class="text-uppercase mb-1">Total Video Diuji</h6>
+                    <h6 class="text-uppercase mb-1">Total Videos Tested</h6>
                     <h2 class="mb-0">{{ total_submissions }}</h2>
                 </div>
             </div>
@@ -23,7 +23,7 @@
         <div class="col-md-3">
             <div class="card bg-success text-white shadow">
                 <div class="card-body text-center">
-                    <h6 class="text-uppercase mb-1">Total Valid (Sesuai)</h6>
+                    <h6 class="text-uppercase mb-1">Total Valid (Match)</h6>
                     <h2 class="mb-0">{{ total_valid }}</h2>
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div class="col-md-3">
             <div class="card bg-warning text-dark shadow">
                 <div class="card-body text-center">
-                    <h6 class="text-uppercase mb-1">Rata-rata Similarity</h6>
+                    <h6 class="text-uppercase mb-1">Average Similarity</h6>
                     <h2 class="mb-0">{{ avg_similarity }}%</h2>
                 </div>
             </div>
@@ -39,31 +39,31 @@
         <div class="col-md-3">
             <div class="card bg-info text-dark shadow">
                 <div class="card-body text-center">
-                    <h6 class="text-uppercase mb-1">Akurasi Sistem (%)</h6>
+                    <h6 class="text-uppercase mb-1">System Accuracy (%)</h6>
                     <h2 class="mb-0">{{ accuracy }}%</h2>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 1. Validasi Utama: Per Video -->
+    <!-- 1. Primary Validation: Per Video -->
     <div class="card shadow mb-4">
         <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">✅ 1. Validasi Utama (Per Video)</h5>
+            <h5 class="mb-0">✅ 1. Primary Validation (Per Video)</h5>
         </div>
         <div class="card-body">
-            <p class="text-muted mb-3">Membandingkan Ekspresi Dominan yang dideteksi Website vs Ground Truth Dataset T7.</p>
+            <p class="text-muted mb-3">Comparing detected dominant expression on website vs Ground Truth Dataset T7.</p>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover text-center">
                     <thead class="table-light">
                         <tr>
                             <th>Video ID</th>
-                            <th>Mata Pelajaran</th>
-                            <th>Durasi (Est)</th>
-                            <th>GT Dominan (Dataset)</th>
-                            <th>Website Dominan</th>
-                            <th>Sesuai?</th>
-                            <th>Aksi</th>
+                            <th>Subject</th>
+                            <th>Duration (Est)</th>
+                            <th>GT Dominant (Dataset)</th>
+                            <th>Website Dominant</th>
+                            <th>Match?</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,12 +92,12 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <a href="{% url 'principal-submission-detail' item.obj.id %}" class="btn btn-sm btn-outline-primary">Detail</a>
+                                <a href="{% url 'principal-submission-detail' item.obj.id %}" class="btn btn-sm btn-outline-primary">Details</a>
                             </td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="7" class="py-4">Belum ada data video yang diproses untuk divalidasi.</td>
+                            <td colspan="7" class="py-4">No video data has been processed for validation yet.</td>
                         </tr>
                         {% endfor %}
                     </tbody>

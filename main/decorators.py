@@ -11,7 +11,7 @@ def role_required(allowed_roles):
             except Exception:
                 profile = None
             if profile is None or profile.role not in allowed_roles:
-                raise PermissionDenied('Anda tidak memiliki akses ke halaman ini.')
+                raise PermissionDenied('You do not have access to this page.')
             return view_func(request, *args, **kwargs)
 
         return _wrapped

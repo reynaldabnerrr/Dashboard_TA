@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Proses Upload Video{% endblock %}
+{% block title %}Video Upload Processing{% endblock %}
 
 {% block content %}
 <div class="processing-container">
@@ -12,15 +12,15 @@
                     <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
                 </svg>
             </div>
-            <h1>Memproses Video</h1>
-            <p>Sistem sedang memproses video Anda. Mohon tunggu...</p>
+            <h1>Processing Video</h1>
+            <p>The system is processing your video. Please wait...</p>
         </div>
 
         <div class="processing-content">
             <!-- Progress Bar -->
             <div class="progress-section">
                 <div class="progress-label">
-                    <span>Progress Proses</span>
+                    <span>Process Progress</span>
                     <span class="progress-percent" id="progressPercent">0%</span>
                 </div>
                 <div class="progress-bar-wrapper">
@@ -33,14 +33,14 @@
             <!-- Status Info -->
             <div class="status-section">
                 <div class="status-item">
-                    <div class="status-label">Status Saat Ini</div>
+                    <div class="status-label">Current Status</div>
                     <div class="status-value" id="statusValue">
-                        <span class="badge badge-pending">Menunggu</span>
+                        <span class="badge badge-pending">Pending</span>
                     </div>
                 </div>
 
                 <div class="status-item">
-                    <div class="status-label">Tahap Proses</div>
+                    <div class="status-label">Processing Stage</div>
                     <div class="status-value">
                         <div class="stage-list">
                             <div class="stage" id="stage-upload">
@@ -51,8 +51,8 @@
                                     </svg>
                                 </div>
                                 <div class="stage-info">
-                                    <div class="stage-name">Upload File</div>
-                                    <div class="stage-desc">File berhasil diunggah</div>
+                                    <div class="stage-name">File Upload</div>
+                                    <div class="stage-desc">File successfully uploaded</div>
                                 </div>
                             </div>
                             <div class="stage" id="stage-preprocess">
@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="stage-info">
                                     <div class="stage-name">Preprocessing</div>
-                                    <div class="stage-desc">Mengekstrak wajah...</div>
+                                    <div class="stage-desc">Extracting faces...</div>
                                 </div>
                             </div>
                             <div class="stage" id="stage-inference">
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="stage-info">
                                     <div class="stage-name">Model Inference</div>
-                                    <div class="stage-desc">Menunggu...</div>
+                                    <div class="stage-desc">Waiting...</div>
                                 </div>
                             </div>
                         </div>
@@ -89,12 +89,12 @@
                 </div>
 
                 <div class="status-item" id="resultSection" style="display: none;">
-                    <div class="status-label">Hasil Proses</div>
+                    <div class="status-label">Process Results</div>
                     <div class="status-value">
                         <div class="result-box">
-                            <p><strong>Total Face Terdeteksi:</strong> <span id="totalFaces">-</span></p>
-                            <p><strong>Skor Model:</strong> <span id="modelScore">-</span></p>
-                            <p><strong>Prediksi:</strong> <span id="predictedLabel">-</span></p>
+                            <p><strong>Total Faces Detected:</strong> <span id="totalFaces">-</span></p>
+                            <p><strong>Model Score:</strong> <span id="modelScore">-</span></p>
+                            <p><strong>Prediction:</strong> <span id="predictedLabel">-</span></p>
                         </div>
                     </div>
                 </div>
@@ -103,15 +103,15 @@
             <!-- Action Buttons -->
             <div class="action-buttons" id="actionButtons" style="display: none;">
                 <a href="{% url 'teacher-submission-detail' submission.id %}" class="btn btn-primary">
-                    Lihat Detail
+                    View Details
                 </a>
                 <a href="{% url 'teacher-dashboard' %}" class="btn btn-secondary">
-                    Kembali ke Dashboard
+                    Back to Dashboard
                 </a>
             </div>
 
             <div class="waiting-message" id="waitingMessage">
-                <p>⏳ Sistem sedang memproses video Anda. Jangan tutup atau refresh halaman ini...</p>
+                <p>⏳ The system is processing your video. Do not close or refresh this page...</p>
             </div>
         </div>
     </div>

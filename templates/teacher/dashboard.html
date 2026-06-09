@@ -1,44 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %}Dashboard Guru{% endblock %}
+{% block title %}Teacher Dashboard{% endblock %}
 
 {% block content %}
 <section class="page-head">
-    <h1>Dashboard Guru</h1>
-    <p>Pantau hasil upload dan status pemrosesan video pembelajaran.</p>
+    <h1>Teacher Dashboard</h1>
+    <p>Monitor your uploads and video processing status.</p>
 </section>
 
 <section class="grid-metrics">
     <div class="metric card">
-        <h3>Total Upload</h3>
+        <h3>Total Uploads</h3>
         <p>{{ total_uploads }}</p>
     </div>
     <div class="metric card">
-        <h3>Selesai Diproses</h3>
+        <h3>Processing Complete</h3>
         <p>{{ total_completed }}</p>
     </div>
     <div class="metric card">
-        <h3>Sedang Diproses</h3>
+        <h3>Currently Processing</h3>
         <p>{{ total_processing }}</p>
     </div>
 </section>
 
 <section class="card">
     <div class="section-head">
-        <h2>Riwayat Upload Video</h2>
-        <a class="btn" href="{% url 'teacher-upload' %}">Upload Video Baru</a>
+        <h2>Video Upload History</h2>
+        <a class="btn" href="{% url 'teacher-upload' %}">Upload New Video</a>
     </div>
 
     <div class="table-wrap">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Mata Pelajaran</th>
-                    <th>Kelas</th>
-                    <th>Hari</th>
-                    <th>Jam</th>
+                    <th>Subject</th>
+                    <th>Class</th>
+                    <th>Day</th>
+                    <th>Time</th>
                     <th>Status</th>
-                    <th>Aksi</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,11 +49,11 @@
                         <td>{{ item.day }}</td>
                         <td>{{ item.start_time }} - {{ item.end_time }}</td>
                         <td><span class="badge badge-{{ item.status }}">{{ item.get_status_display }}</span></td>
-                        <td><a href="{% url 'teacher-submission-detail' item.id %}">Lihat</a></td>
+                        <td><a href="{% url 'teacher-submission-detail' item.id %}">View</a></td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="6">Belum ada upload video.</td>
+                        <td colspan="6">No video uploads yet.</td>
                     </tr>
                 {% endfor %}
             </tbody>

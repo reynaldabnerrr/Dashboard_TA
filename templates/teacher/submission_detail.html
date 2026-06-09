@@ -1,32 +1,32 @@
 {% extends 'base.html' %}
 
-{% block title %}Detail Upload{% endblock %}
+{% block title %}Upload Details{% endblock %}
 
 {% load custom_filters %}
 
 {% block content %}
 <section class="page-head">
-    <h1>Detail Upload Guru</h1>
-    <p>Ringkasan metadata dan hasil preprocessing.</p>
+    <h1>Teacher Upload Details</h1>
+    <p>Summary of metadata and preprocessing results.</p>
 </section>
 
 <section class="card">
     <div class="detail-grid">
-        <p><strong>Mata Pelajaran:</strong> {{ submission.subject }}</p>
-        <p><strong>Kelas:</strong> {{ submission.class_name }}</p>
-        <p><strong>Jadwal:</strong> {{ submission.day }}, {{ submission.start_time }} - {{ submission.end_time }}</p>
-        <p><strong>Catatan:</strong> {{ submission.notes|default:'-' }}</p>
-        <p><strong>Tanggal Upload:</strong> {{ submission.created_at|date:"d M Y H:i" }}</p>
+        <p><strong>Subject:</strong> {{ submission.subject }}</p>
+        <p><strong>Class:</strong> {{ submission.class_name }}</p>
+        <p><strong>Schedule:</strong> {{ submission.day }}, {{ submission.start_time }} - {{ submission.end_time }}</p>
+        <p><strong>Notes:</strong> {{ submission.notes|default:'-' }}</p>
+        <p><strong>Upload Date:</strong> {{ submission.created_at|date:"d M Y H:i" }}</p>
         <p><strong>Status:</strong> {{ submission.get_status_display }}</p>
-        <p><strong>Waktu Proses Selesai:</strong> {{ submission.processed_at|date:"d M Y H:i"|default:'-' }}</p>
-        <p><strong>Jumlah Face:</strong> {{ submission.total_faces }}</p>
-        <p><strong>Skor Model:</strong> {{ submission.model_score|floatformat:2 }}</p>
-        <p><strong>Prediksi:</strong> {{ submission.predicted_label|default:'-' }}</p>
-        <p><strong>File Video:</strong> <a href="{{ submission.original_video.url }}">Buka File</a></p>
+        <p><strong>Processing Completion Time:</strong> {{ submission.processed_at|date:"d M Y H:i"|default:'-' }}</p>
+        <p><strong>Number of Faces:</strong> {{ submission.total_faces }}</p>
+        <p><strong>Model Score:</strong> {{ submission.model_score|floatformat:2 }}</p>
+        <p><strong>Prediction:</strong> {{ submission.predicted_label|default:'-' }}</p>
+        <p><strong>Video File:</strong> <a href="{{ submission.original_video.url }}">Open File</a></p>
     </div>
 
     {% if submission.expression_breakdown %}
-    <h2>📊 Breakdown Ekspresi</h2>
+    <h2>📊 Expression Breakdown</h2>
     <div class="breakdown-section">
         <div class="breakdown-grid">
             {% with breakdown=submission.expression_breakdown|json_loads %}
@@ -66,8 +66,8 @@
                 </svg>
             </div>
             <div>
-                <h3>Aksi Cepat</h3>
-                <p>Kelola video ini tanpa kehilangan konteks detail analisis.</p>
+                <h3>Quick Actions</h3>
+                <p>Manage this video without losing context of detailed analysis.</p>
             </div>
         </div>
         <div class="action-buttons">
@@ -78,8 +78,8 @@
                     </svg>
                 </span>
                 <span class="btn-text">
-                    <span class="btn-title">Kembali</span>
-                    <span class="btn-subtitle">Ke dashboard guru</span>
+                    <span class="btn-title">Back</span>
+                    <span class="btn-subtitle">To teacher dashboard</span>
                 </span>
             </a>
             <a href="{% url 'teacher-delete-submission' submission.id %}" class="btn btn-danger">
@@ -93,8 +93,8 @@
                     </svg>
                 </span>
                 <span class="btn-text">
-                    <span class="btn-title">Hapus video</span>
-                    <span class="btn-subtitle">Tindakan permanen</span>
+                    <span class="btn-title">Delete Video</span>
+                    <span class="btn-subtitle">Permanent action</span>
                 </span>
             </a>
         </div>
